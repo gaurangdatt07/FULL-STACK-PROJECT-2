@@ -35,22 +35,18 @@ var map;
 var myClient;
 var MySecret;
 
-
-
 var Location = function(data){
 	var self = this;
 	this.places = data.places;
 	this.lat = data.lat;
 	this.long = data.long;
-    this.street = "";
-    this.city = "";
-
-
+   	 this.street = "";
+    	this.city = "";
 	this.visible = ko.observable(true);
 
 	var foursquareURL = 'https://api.foursquare.com/v2/venues/search?ll='+ this.lat + ','
 	+ this.long + '&client_id=' + myClient + '&client_secret=' + MySecret + '&v=20160118' + '&query=' + this.places;
-
+	
 	$.getJSON(foursquareURL).done(function(data) {
 		var results = data.response.venues[0];
 		self.URL = results.url;
@@ -65,8 +61,6 @@ var Location = function(data){
 			if(typeof self.city === 'undefined'){
 				self.city = "City Not available";
 			}
-
-
 	}).fail(function() {
 		alert("Could not load the API.Please Try Again.");
 	});
@@ -98,37 +92,19 @@ var Location = function(data){
         '<div>' + self.city + "</div>" ;
 
         self.infoWindow.setContent(self.contentString);
-
-		self.infoWindow.open(map, this);
-
-
-
-
-
-		self.marker.setAnimation(google.maps.Animation.BOUNCE);
+	self.infoWindow.open(map, this);
+	self.marker.setAnimation(google.maps.Animation.BOUNCE);
       	setTimeout(function() {
       		self.marker.setAnimation(null);
      	}, 800);
-
-		setTimeout(function(){
-				  
-					self.infoWindow.close(map,this);
-				},1000
-			);
-	});
-
-
-
-
-
+	setTimeout(function(){
+				self.infoWindow.close(map,this);
+				},1000);}
+			       );
 	this.bounce = function(place) {
 		google.maps.event.trigger(self.marker, 'click');
 	};
-
-
 };
-
-
 
 function Index() {
 	var self = this;
