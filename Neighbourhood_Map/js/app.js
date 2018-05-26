@@ -51,7 +51,7 @@ var Location = function(data){
 		var results = data.response.venues[0];
 		self.URL = results.url;
 		if (typeof self.URL === 'undefined'){
-			self.URL = "";
+			self.URL = "Not available";
 		}
 		self.street = results.location.formattedAddress[0];
 		if(typeof self.street === 'undefined'){
