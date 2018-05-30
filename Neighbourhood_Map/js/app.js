@@ -62,7 +62,7 @@ var Location = function(data){
 				self.city = "City Not available";
 			}
 	}).fail(function() {
-		alert("Could not load the API.Please Try Again.");
+		alert("Could not load. Please try again");
 	});
 
 
@@ -216,7 +216,7 @@ function First() {
 	ko.applyBindings(new Index());
 }
 
-function UnabletoReload() {
+function unabletoLoad() {
 	alert("Unable to reload App please check Internet connection.");
 }
 
